@@ -5,6 +5,7 @@ import strategy.duck.sub.DecoyDuck;
 import strategy.duck.sub.MallardDuck;
 import strategy.duck.sub.RedHeadDuck;
 import strategy.duck.sub.RubberDuck;
+import strategy.fly.FlyRocketPowered;
 
 public class Main {
 
@@ -37,6 +38,10 @@ public class Main {
 		d4.performFly();
 		d4.performQuack();
 		d4.swim();
+
+
+		d4.setFlyBehavior(new FlyRocketPowered()); //러버덕에 로켓추진체를 단다
+		d4.performFly();
 
 	}
 }
