@@ -1,10 +1,18 @@
 package observer;
 
-public class WeatherData {
+import java.util.ArrayList;
+import java.util.List;
+
+public class WeatherData implements Subject {
 
 	private float temperature;
 	private float humidity;
 	private float pressure;
+	private List<Observer> observers; //옵저버 객체
+
+	public WeatherData() {
+		this.observers = new ArrayList<>(); //생성할때 옵저버를 초기화함
+	}
 
 	public float getTemperature() {
 		return temperature;
@@ -19,17 +27,33 @@ public class WeatherData {
 	}
 
 	//기상 관측값이 갱신될 때마다 이 메소드가 호출됩니다.
-	public void measurementsChanged(){
-		float temp = getTemperature();
-		float humidity = getHumidity();
-		float pressure = getPressure();
+	public void measurementsChanged() {
+		notifyObservers();
+	}
 
-		//각 디스플레이를 갱신
-		//currentConditionsDisplay.update(temp, humidity, pressure);
-		//statisticsDisplay.update(temp, humidity, pressure);
-		//forecastDisplay.update(temp, humidity, pressure);
-		//1. 구체적인 구현에 맞춰서 코딩했음. 프로그램을 고치지 않고는 다른 디스플레이를 추가하거나 제거할수 없음
-		//2. 디스플레이 항목과 데이터를 주고받는데 공통된 인터페이스를 사용하고 있는것 같음
+	public void setMeasurements(float t, float h, float p) {
+		//사실 어디서 값을 받아오면 더 좋겠지만 이정도로 하자
+		this.temperature = t;
+		this.humidity = h;
+		this.pressure = p;
+		measurementsChanged();
+	}
 
+	@Override
+	public void registerObserver(Observer observer) {
+		observers.add(observer); //옵저버 등록함
+	}
+
+	@Override
+	public void removeObserver(Observer observer) {
+		observers.remove(observer); //옵저버 탈퇴
+	}
+
+	@Override
+	public void notifyObservers() {
+		//각각의 옵저버에게 현재 상태 update해주기
+		observers.stream().forEach(o ->{
+			o.update(temperature, humidity, pressure);
+		});
 	}
 }
