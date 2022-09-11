@@ -21,9 +21,9 @@ public class CurrentConditionDisplay implements Observer, DisplayElement {
 	}
 
 	@Override
-	public void update(float temp, float humidity, float pressure) {
-		this.temperature = temp;
-		this.humidity = humidity;
+	public void update() {
+		this.temperature = weatherData.getTemperature();
+		this.humidity = weatherData.getHumidity();
 		display();
 		//사실 update가 될때 display를 호출하는게 최선의 방법은 아니다.
 		// 나중에 mvc패턴을 배울때 더 자세히 알아보기로

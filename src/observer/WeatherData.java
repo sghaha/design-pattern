@@ -53,7 +53,7 @@ public class WeatherData implements Subject {
 	public void notifyObservers() {
 		//각각의 옵저버에게 현재 상태 update해주기
 		observers.stream().forEach(o ->{
-			o.update(temperature, humidity, pressure);
+			o.update();
 		});
 	}
 }
