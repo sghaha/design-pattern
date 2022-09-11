@@ -1,6 +1,5 @@
 package observer.display;
 
-import observer.DisplayElement;
 import observer.Observer;
 import observer.WeatherData;
 
