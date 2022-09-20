@@ -17,3 +17,8 @@ https://gyoogle.dev/blog/design-pattern/Strategy%20Pattern.html
 자동으로 내용이 갱신되는 방식으로
 일대다(OneToMany) 의존성을 정의합니다.
 https://gyoogle.dev/blog/design-pattern/Observer%20Pattern.html
+
+## 3. 데코레이터 패턴
+객체에 추가 요소를 동적으로 더할 수 있습니다.   
+데코레이터를 사용하면 서브클래스를 만들 떄보다 훨씬   
+유연하게 기능을 확장할 수 있습니다.
